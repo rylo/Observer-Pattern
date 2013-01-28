@@ -1,4 +1,10 @@
-module Subject
+class Subject
+  
+  attr_reader :observers
+  
+  def initialize
+    @observers = {}
+  end
   
   def register_observer(name, observer)
     @observers[name] = observer
@@ -10,9 +16,9 @@ module Subject
   
   private
   
-  def notify_observers
+  def notify_observers(object = self)
     @observers.each do |stock_name, observer|
-      observer.notify(self)
+      observer.notify(object)
     end
   end
   

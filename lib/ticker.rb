@@ -1,5 +1,7 @@
-require 'observer'
+require_relative "./observer"
 
-class Ticker
-  include Observer
+class Ticker < Observer
+  def notify(object)
+    p "#{object.symbol} - #{object.price}"
+  end
 end

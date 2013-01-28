@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-class MockObserver
-  include Observer
+class MockObserver < Observer
 end
 
 describe Observer do
@@ -11,10 +10,10 @@ describe Observer do
   it "should be notified of changes from a stock" do
     { "8L" => 50, 
       "8L" => 100,
-      "Kittens" => 9001 }.each do |name, price|
-      stock.stub(:symbol) { name }
+      "Kittens" => 9001 }.each do |symbol, price|
+      stock.stub(:symbol) { symbol }
       stock.stub(:price) { price }
-      observer.notify(stock).should == "Stock price of #{name} is now #{price}"
+      observer.notify(stock).should == stock
     end
   end
 end

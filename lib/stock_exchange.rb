@@ -1,7 +1,7 @@
-require 'observer'
-require 'subject'
+require "observer"
 
-class StockExchange
-  include Observer
-  include Subject
+class StockExchange < Subject
+  def notify(object)
+    notify_observers(object)
+  end
 end

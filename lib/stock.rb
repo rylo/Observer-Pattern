@@ -1,9 +1,7 @@
-require 'subject'
+require_relative './subject'
 
-class Stock
-  include Subject
-  
-  attr_reader :symbol, :price, :observers
+class Stock < Subject
+  attr_reader :symbol, :price
   
   def initialize(symbol, price)
     @symbol = symbol
@@ -13,5 +11,6 @@ class Stock
 
   def update_price(price_change)
     @price += price_change
+    notify_observers
   end
 end
