@@ -4,10 +4,12 @@ require_relative '../lib/stock'
 require_relative '../lib/ticker'
 require_relative '../lib/stock_exchange'
 
-
 stocks = []
 stock_exchange = StockExchange.new
-stock_exchange.register_observer("Ticker 1", Ticker.new)
+
+100.times do |ticker|
+  stock_exchange.register_observer("Ticker #{ticker}", Ticker.new)
+end
 
 100.times do |stock|
   symbol = (0...3).map{ ('a'..'z').to_a[rand(26)] }.join
